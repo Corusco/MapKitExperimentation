@@ -10,4 +10,14 @@
 
 @implementation CacheModel
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.cacheLocation = [[CLLocation alloc] initWithLatitude:40.7705 longitude:-111.8920];
+
+    }
+    return self;
+}
+
 @end

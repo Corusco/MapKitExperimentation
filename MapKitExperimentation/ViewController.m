@@ -19,14 +19,7 @@
 @property (nonatomic) MKUserLocation *userLocation;
 @property (nonatomic) BOOL showsUserLocation;
 @property (nonatomic) BOOL userLocationUpdated;
-@property (nonatomic) CLLocationCoordinate2D circleCenter;
-@property (nonatomic) CLLocationCoordinate2D newCircleCenter;
-@property (nonatomic) CLLocationDegrees userLatitude;
-@property (nonatomic) CLLocationDegrees userLongitude;
 @property (nonatomic) CLLocation *cacheLocation;
-@property (nonatomic) CLLocationCoordinate2D randomizedCircleCenter;
-@property (nonatomic) CLLocationDegrees randomizedCircleCenterLatitude;
-@property (nonatomic) CLLocationDegrees randomizedCircleCenterLongitude;
 
 
 @end
@@ -52,26 +45,8 @@
     
 #pragma  - Playing with coordinates, drawing a circle
     
-    // Setting User Position to SLC Temple
-    self.userLatitude = 40.7705;
-    self.userLongitude = -111.8920;
-    
-    
-    // Setting sample cache location. Real thing will be passed in from Cache model.
-    self.cacheLocation = [[CLLocation alloc] initWithLatitude:self.userLatitude longitude:self.userLongitude];
-
-    
-    //Setting randomized circle center by setting separate properties
-    self.randomizedCircleCenterLatitude = self.cacheLocation.coordinate.latitude + (((float)arc4random_uniform(2)-.3))/ARC4RANDOM_MAX;
-    self.randomizedCircleCenterLongitude = self.cacheLocation.coordinate.longitude + (((float)arc4random_uniform(2)-.3))/ARC4RANDOM_MAX;
-    
-    
-    //setting randomized circle center by setting 2D coordinate property
-    self.randomizedCircleCenter = CLLocationCoordinate2DMake(self.randomizedCircleCenterLatitude, self.randomizedCircleCenterLongitude);
-    
-    
     //make a circle and give it coordinates
-    MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.randomizedCircleCenter radius: .5*METERS_MILE];
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate:[[LocationController sharedInstance] getRandomizedSearchCircle:(self.cacheLocation)] radius: .5*METERS_MILE];
     
     
     //add circle overlay to view

@@ -12,14 +12,13 @@
 
 #import "LocationController.h"
 #import "ViewController.h"
+#import "CacheModel.h"
 
 @interface LocationController () <CLLocationManagerDelegate>
 
 @property (nonatomic) CLLocationDegrees *randomizedCacheLocationLatitude;
 @property (nonatomic) CLLocationDegrees *randomizedCacheLocationLongitude;
 @property (nonatomic) CLLocation *cacheLocation;
-
-
 
 @end
 
@@ -35,6 +34,10 @@
         sharedInstance.locationManager = [[CLLocationManager alloc] init];
         
         [sharedInstance.locationManager setDelegate:sharedInstance];
+        
+        CacheModel *currentCache = [CacheModel new];
+        
+        sharedInstance.cacheLocation = currentCache.cacheLocation;
         
         
         
@@ -53,11 +56,11 @@
 }
 
 
-
-- (CLLocationCoordinate2D)getRandomizedSearchCircle:(CLLocationCoordinate2D *)cacheLocation {
+//Currently being called in: 
+- (CLLocationCoordinate2D)getRandomizedSearchCircle:(CLLocation *)cacheLocation {
     
-    CLLocationDegrees randomizedCacheLatitude = cacheLocation->latitude + (((float)arc4random_uniform(2)-.3))/ARC4RANDOM_MAX;
-    CLLocationDegrees randomizedCacheLongitude = cacheLocation->longitude + (((float)arc4random_uniform(2)-.3))/ARC4RANDOM_MAX;
+    CLLocationDegrees randomizedCacheLatitude = cacheLocation.coordinate.latitude + (((float)arc4random_uniform(2)-.3))/ARC4RANDOM_MAX;
+    CLLocationDegrees randomizedCacheLongitude = cacheLocation.coordinate.longitude + (((float)arc4random_uniform(2)-.3))/ARC4RANDOM_MAX;
     CLLocationCoordinate2D randomizedCircleCenter = CLLocationCoordinate2DMake(randomizedCacheLatitude, randomizedCacheLongitude);
     
     return randomizedCircleCenter;

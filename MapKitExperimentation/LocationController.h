@@ -18,6 +18,6 @@
 
 + (instancetype)sharedInstance;
 
-- (CLLocationCoordinate2D)getRandomizedSearchCircle:(CLLocationCoordinate2D *)cacheLocation;
+- (CLLocationCoordinate2D)getRandomizedSearchCircle:(CLLocation *)cacheLocation;
 
 @end

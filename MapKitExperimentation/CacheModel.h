@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface CacheModel : NSObject
-
+@property (strong, nonatomic) CLLocation *cacheLocation;
 
 
 @end
