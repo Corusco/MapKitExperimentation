@@ -44,18 +44,11 @@
     
     [self.mapView setDelegate:self];
     
-    //self.locationManager = [[CLLocationManager alloc] init];
-    
-    //[self.locationManager setDelegate:self];
-    
 #pragma - Location Manager Setup
     
-    //if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-    //    [self.locationManager requestWhenInUseAuthorization];
-    //}
-    
-    //[self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    //[self.locationManager startUpdatingLocation];
+    if ([[LocationController sharedInstance].locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [[LocationController sharedInstance].locationManager requestWhenInUseAuthorization];
+    }
     
 #pragma  - Playing with coordinates, drawing a circle
     
@@ -78,7 +71,7 @@
     
     
     //make a circle and give it coordinates
-    MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.randomizedCircleCenter radius: 5*METERS_MILE];
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.randomizedCircleCenter radius: .5*METERS_MILE];
     
     
     //add circle overlay to view
@@ -109,8 +102,8 @@
     
     MKCircleRenderer *circleRenderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
     
-    circleRenderer.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.2];
-    circleRenderer.strokeColor = [[UIColor redColor] colorWithAlphaComponent:0.4];
+    circleRenderer.fillColor = [[UIColor grayColor] colorWithAlphaComponent:0.2];
+    circleRenderer.strokeColor = [[UIColor grayColor] colorWithAlphaComponent:0.4];
     circleRenderer.lineWidth = 2;
     
     return circleRenderer;

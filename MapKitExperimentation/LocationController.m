@@ -11,11 +11,14 @@
 #define ARC4RANDOM_MAX 0x100
 
 #import "LocationController.h"
+#import "ViewController.h"
 
 @interface LocationController () <CLLocationManagerDelegate>
 
 @property (nonatomic) CLLocationDegrees *randomizedCacheLocationLatitude;
 @property (nonatomic) CLLocationDegrees *randomizedCacheLocationLongitude;
+@property (nonatomic) CLLocation *cacheLocation;
+
 
 
 @end
@@ -33,6 +36,8 @@
         
         [sharedInstance.locationManager setDelegate:sharedInstance];
         
+        
+        
 #pragma - Location Manager Setup
         
         if ([sharedInstance.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
@@ -44,8 +49,6 @@
         
     });
     
-    
-                 
     return sharedInstance;
 }
 
@@ -61,4 +64,15 @@
     
 }
 
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = locations.lastObject;
+    
+    CLLocationDistance distance = [location distanceFromLocation:self.cacheLocation];
+    NSLog(@"%f", distance);
+    
+    if (distance < 10) {
+        NSLog(@"Congratulations");
+        
+    }
+}
 @end
