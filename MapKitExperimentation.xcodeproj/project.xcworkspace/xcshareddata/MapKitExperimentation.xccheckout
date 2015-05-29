@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D9E5DE9D-979B-4B63-84A0-A4A013711976</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MapKitExperimentation</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>ECBA5CF200F8E04B5455F5356CC4C66270BA1CE8</key>
+		<string>https://github.com/corusco/mapkitexperimentation.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MapKitExperimentation.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>ECBA5CF200F8E04B5455F5356CC4C66270BA1CE8</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/corusco/mapkitexperimentation.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>ECBA5CF200F8E04B5455F5356CC4C66270BA1CE8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ECBA5CF200F8E04B5455F5356CC4C66270BA1CE8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MapKitExperimentation</string>
+		</dict>
+	</array>
+</dict>
+</plist>

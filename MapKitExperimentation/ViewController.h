@@ -14,7 +14,7 @@
 @interface ViewController : UIViewController//
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (nonatomic, strong) CLLocationManager *locationManager;
+//@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end
 

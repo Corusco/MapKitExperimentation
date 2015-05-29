@@ -16,6 +16,7 @@
 		D052BCE11B0D328F00D72A9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D052BCE01B0D328F00D72A9C /* Images.xcassets */; };
 		D052BCE41B0D328F00D72A9C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D052BCE21B0D328F00D72A9C /* LaunchScreen.xib */; };
 		D052BCF01B0D328F00D72A9C /* MapKitExperimentationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D052BCEF1B0D328F00D72A9C /* MapKitExperimentationTests.m */; };
+		D0E6CA071B17719E00C2D7E2 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E6CA061B17719E00C2D7E2 /* LocationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		D052BCE91B0D328F00D72A9C /* MapKitExperimentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapKitExperimentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D052BCEE1B0D328F00D72A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D052BCEF1B0D328F00D72A9C /* MapKitExperimentationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapKitExperimentationTests.m; sourceTree = "<group>"; };
+		D0E6CA051B17719E00C2D7E2 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		D0E6CA061B17719E00C2D7E2 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,8 @@
 				D052BCD81B0D328F00D72A9C /* AppDelegate.m */,
 				D052BCDA1B0D328F00D72A9C /* ViewController.h */,
 				D052BCDB1B0D328F00D72A9C /* ViewController.m */,
+				D0E6CA051B17719E00C2D7E2 /* LocationController.h */,
+				D0E6CA061B17719E00C2D7E2 /* LocationController.m */,
 				D052BCDD1B0D328F00D72A9C /* Main.storyboard */,
 				D052BCE01B0D328F00D72A9C /* Images.xcassets */,
 				D052BCE21B0D328F00D72A9C /* LaunchScreen.xib */,
@@ -227,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0E6CA071B17719E00C2D7E2 /* LocationController.m in Sources */,
 				D052BCDC1B0D328F00D72A9C /* ViewController.m in Sources */,
 				D052BCD91B0D328F00D72A9C /* AppDelegate.m in Sources */,
 				D052BCD61B0D328F00D72A9C /* main.m in Sources */,
