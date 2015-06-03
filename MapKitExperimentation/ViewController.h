@@ -16,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 //@property (nonatomic, strong) CLLocationManager *locationManager;
 
+- (void)displayCacheCircle;
+
 @end
 

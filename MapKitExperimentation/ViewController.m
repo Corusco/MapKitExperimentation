@@ -12,6 +12,8 @@
 
 #import "ViewController.h"
 #import "LocationController.h"
+#import "CacheModel.h"
+#import "CameraViewController.h"
 
 
 @interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
@@ -19,7 +21,9 @@
 @property (nonatomic) MKUserLocation *userLocation;
 @property (nonatomic) BOOL showsUserLocation;
 @property (nonatomic) BOOL userLocationUpdated;
+@property (nonatomic) BOOL didAddOverlayRenderer;
 @property (nonatomic) CLLocation *cacheLocation;
+@property (nonatomic) CLLocationCoordinate2D circleCenter;
 
 
 @end
@@ -30,8 +34,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
-    self.navigationItem.rightBarButtonItem = buttonItem;
+    MKUserTrackingBarButtonItem *userTrackerButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    
+    
+    UIBarButtonItem *displayCacheCircleButton = [[UIBarButtonItem alloc] initWithTitle:@"Show Cache"
+                                                                                 style:UIBarButtonItemStylePlain
+                                                                                target:(self)
+                                                                                action:@selector(displayCacheCircle)];
+    
+    self.navigationItem.rightBarButtonItems = @[userTrackerButton, displayCacheCircleButton];
     
     [self.mapView setShowsUserLocation:YES];
     
@@ -45,8 +56,14 @@
     
 #pragma  - Playing with coordinates, drawing a circle
     
+    CacheModel *currentCache = [CacheModel new];
+    
+    self.cacheLocation = currentCache.cacheLocation;
+
+    self.circleCenter = [[LocationController sharedInstance] getRandomizedSearchCircle:self.cacheLocation];
+
     //make a circle and give it coordinates
-    MKCircle *circle = [MKCircle circleWithCenterCoordinate:[[LocationController sharedInstance] getRandomizedSearchCircle:(self.cacheLocation)] radius: .5*METERS_MILE];
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.circleCenter radius: .5*METERS_MILE];
     
     
     //add circle overlay to view
@@ -72,6 +89,20 @@
     }
 }
 
+
+//Zooms to circle overlay at loading
+- (void) mapView:(MKMapView *)mapView didAddOverlayRenderers:(NSArray *)renderers {
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.circleCenter, 2*METERS_MILE, 2*METERS_MILE);
+    
+    if (!self.didAddOverlayRenderer) {
+        [self.mapView setRegion:viewRegion animated:YES];
+        self.didAddOverlayRenderer = YES;
+    }
+    
+}
+
+//Renderer for Circle
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView
             rendererForOverlay:(id<MKOverlay>)overlay{
     
@@ -85,8 +116,66 @@
     
 }
 
+//
+- (void)displayCacheCircle {
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.circleCenter, 2*METERS_MILE, 2*METERS_MILE);
+    
+    [self.mapView setRegion:viewRegion animated:YES];
+    self.didAddOverlayRenderer = YES;
+}
 
 
+- (void)cacheIncompleteAlert {
+    
+    UIAlertController *incompleteAlert = [UIAlertController alertControllerWithTitle:@"Too far from the cache!" message:@"Keep going! You can do it!" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"You're right. I'll look some more" style:UIAlertActionStyleDefault handler:nil];
+    
+    [incompleteAlert addAction:confirmAction];
+    
+    [self presentViewController:incompleteAlert animated:YES completion:nil];
+    
+}
+
+- (void)cacheCompleteAlert {
+    
+    UIAlertController *completeAlert = [UIAlertController alertControllerWithTitle:@"You did it! Congratulations!" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *completeAction = [UIAlertAction actionWithTitle:@"Take a photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        [completeAlert dismissViewControllerAnimated:YES completion:nil];
+            CameraViewController *newCamera = [[CameraViewController alloc] init];
+            [self.navigationController presentViewController:newCamera animated:YES completion:nil];
+       
+//        dispatch_async(dispatch_get_main_queue(), ^ {
+//        });
+        
+    }];
+    
+    UIAlertAction *stayAction = [UIAlertAction actionWithTitle:@"Complete without a photo" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    
+    [completeAlert addAction:completeAction];
+    [completeAlert addAction:stayAction];
+    
+    [self presentViewController:completeAlert animated:YES completion:nil];
+}
+
+-(void)presentTheCamera
+{
+
+}
+
+- (IBAction)finishButtonTapped:(id)sender {
+    
+    if ([[LocationController sharedInstance] canCompleteCache] == YES) {
+        [self cacheCompleteAlert];
+    } else {
+        [self cacheIncompleteAlert];
+    }
+}
 
 
 @end

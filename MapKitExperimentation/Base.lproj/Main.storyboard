@@ -19,9 +19,20 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dXH-6t-2kV">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="DSK-NX-E5Q"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="WMJ-jt-Zw7"/>
+                                    <barButtonItem title="I think I'm there! (Take a Photo)" id="PPi-gw-CYF">
+                                        <connections>
+                                            <action selector="finishButtonTapped:" destination="BYZ-38-t0r" id="KC8-ey-PY4"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your destination could be anywhere inside the circle, not necessarily in the center!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14q-wS-ZpX">
+                                <rect key="frame" x="36" y="72" width="529" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tRW-gg-8KE">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                             </mapView>
@@ -32,19 +43,23 @@
                             <constraint firstItem="tRW-gg-8KE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="JZx-ZJ-j1D"/>
                             <constraint firstItem="tRW-gg-8KE" firstAttribute="bottom" secondItem="dXH-6t-2kV" secondAttribute="top" id="fav-8V-8wV"/>
                             <constraint firstItem="dXH-6t-2kV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="hQk-Gf-Uoz"/>
+                            <constraint firstItem="14q-wS-ZpX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="jzb-2v-TlG"/>
                             <constraint firstAttribute="width" secondItem="tRW-gg-8KE" secondAttribute="width" id="pbR-Ek-G9e"/>
+                            <constraint firstAttribute="centerX" secondItem="14q-wS-ZpX" secondAttribute="centerX" constant="-0.5" id="qrf-8Z-05I"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dXH-6t-2kV" secondAttribute="bottom" id="wyX-zw-69G"/>
                             <constraint firstItem="tRW-gg-8KE" firstAttribute="leading" secondItem="dXH-6t-2kV" secondAttribute="leading" id="xNl-td-WXR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="l5R-vj-oD7"/>
+                    <navigationItem key="navigationItem" id="l5R-vj-oD7">
+                        <barButtonItem key="leftBarButtonItem" title="&lt; Cancel Search" id="NPI-PN-FrR"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="tRW-gg-8KE" id="8WW-14-iBN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1151" y="337"/>
+            <point key="canvasLocation" x="1169" y="335"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C8j-Ov-HJW">
